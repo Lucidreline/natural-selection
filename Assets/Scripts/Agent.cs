@@ -1,14 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Agent : MonoBehaviour
 {
+
+    [SerializeField] TextMeshProUGUI nameText;
 
     private Rigidbody2D rb2D;
     [SerializeField] static float thrust = 0.5f;
 
     public float distFromEndPoint;
+    public string id;
 
     [SerializeField] static float vectorUpdateFreq = 0.5f;
     [SerializeField] static int vectorQuantity = 5;
@@ -23,6 +26,8 @@ public class Agent : MonoBehaviour
         {
             vectors = PopulateVector();
         }
+
+        
         
         
 
@@ -30,9 +35,15 @@ public class Agent : MonoBehaviour
         StartCoroutine(VectorChanger());
     }
 
+    private void Start()
+    {
+        nameText.text = id;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         rb2D.AddForce(currentVector * thrust);
     }
 

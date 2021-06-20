@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class AgentManager : MonoBehaviour
 {
+
+    static int IdCounter = 0;
+
     [SerializeField] GameObject spawnPoint;
     [SerializeField] GameObject endPoint;
 
@@ -35,7 +38,9 @@ public class AgentManager : MonoBehaviour
         for(int i = 0; i < agentQuantity; i++)
         {
             agents[i] = Instantiate(agentPrefab, spawnPoint.transform.position, Quaternion.identity);
-           
+            agents[i].name = IdCounter.ToString();
+            IdCounter++;
+
         }
     }
 
