@@ -17,7 +17,14 @@ public class Agent : MonoBehaviour
     void Awake()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-        vectors = PopulateVector();
+
+        if(vectors.Length == 0)
+        {
+            vectors = PopulateVector();
+        }
+        
+        
+
         UpdateVector();
         StartCoroutine(VectorChanger());
     }
