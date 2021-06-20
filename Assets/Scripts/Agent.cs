@@ -8,7 +8,9 @@ public class Agent : MonoBehaviour
     private Rigidbody2D rb2D;
     [SerializeField] static float thrust = 0.5f;
 
-    [SerializeField] static float vectorUpdateFreq = 1f;
+    public float distFromEndPoint;
+
+    [SerializeField] static float vectorUpdateFreq = 0.5f;
     [SerializeField] static int vectorQuantity = 5;
     Vector2 currentVector;
 
@@ -17,7 +19,6 @@ public class Agent : MonoBehaviour
     void Awake()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-
         if(vectors.Length == 0)
         {
             vectors = PopulateVector();
