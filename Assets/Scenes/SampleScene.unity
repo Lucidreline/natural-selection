@@ -155,7 +155,7 @@ Transform:
   - {fileID: 1303459748}
   - {fileID: 1417368161}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -761,10 +761,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1334120794}
-  endPoint: {fileID: 0}
-  generationDurration: 5
+  endPoint: {fileID: 808349334}
   agentPrefab: {fileID: 3951319894141293217, guid: f01ed78fd8e337b40b230c7d532abbd1, type: 3}
-  agentQuantity: 5
+  agentQuantity: 20
+  agentThrust: 0.05
+  agentVectorUpdateFreq: 1
+  agentVectorQuantity: 20
+  generationDurration: 5
 --- !u!4 &1454234159
 Transform:
   m_ObjectHideFlags: 0
@@ -777,7 +780,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1619489758
 GameObject:

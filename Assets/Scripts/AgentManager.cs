@@ -6,29 +6,30 @@ using UnityEngine;
 public class AgentManager : MonoBehaviour
 {
 
-    static int IdCounter = 0;
+    
 
+    [Header("Locations")]
     [SerializeField] GameObject spawnPoint;
     [SerializeField] GameObject endPoint;
 
-    [SerializeField] float generationDurration = 10f;
-
+    [Header("Agent")]
     [SerializeField] Agent agentPrefab;
     [SerializeField] int agentQuantity = 5;
+    [SerializeField] public float agentThrust = 0.5f;
+    [SerializeField] public float agentVectorUpdateFreq = 0.5f;
+    [SerializeField] public int agentVectorQuantity = 5;
 
     Agent[] agents;
+    int IdCounter = 0;
+
+    [Header("Generation")]
+    [SerializeField] float generationDurration = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
         InitAgents();
         StartCoroutine(GenerationChanger());
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void InitAgents()
@@ -38,9 +39,9 @@ public class AgentManager : MonoBehaviour
         for(int i = 0; i < agentQuantity; i++)
         {
             agents[i] = Instantiate(agentPrefab, spawnPoint.transform.position, Quaternion.identity);
-            agents[i].name = IdCounter.ToString();
+            agents[i].id = IdCounter.ToString();
+            agents[i].name = "Agent " + IdCounter.ToString();
             IdCounter++;
-
         }
     }
 
@@ -58,9 +59,7 @@ public class AgentManager : MonoBehaviour
     {
         // find the distance from each agent to end point
         foreach(Agent agent in agents)
-        {
             agent.distFromEndPoint = Vector2.Distance(spawnPoint.transform.position, agent.transform.position);
-        }
 
         agents = agents.OrderBy(x => x.distFromEndPoint).ToArray();
  
