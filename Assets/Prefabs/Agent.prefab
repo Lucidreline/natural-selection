@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4631151621440195739}
   - component: {fileID: 2114062850437521264}
   - component: {fileID: 6358842219801588934}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Agent Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3951319894141293217}
   - component: {fileID: 3951319894141293216}
   - component: {fileID: 3951319894141293220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,8 +206,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1671055791
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0.43147027, g: 0.9056604, b: 0.5287901, a: 1}
@@ -232,9 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b127495788b6a7449d4810cff92272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   nameText: {fileID: 6358842219801588934}
-  distFromEndPoint: 0
   id: 0
+  distFromEndPoint: 0
   vectors: []
 --- !u!50 &3951319894141293216
 Rigidbody2D:
@@ -285,7 +286,7 @@ GameObject:
   - component: {fileID: 981033538866705812}
   - component: {fileID: 3798627044859434471}
   - component: {fileID: 4347611280697645863}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Agent Name Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
