@@ -24,6 +24,8 @@ public class AgentManager : MonoBehaviour
 
     [Header("Generation")]
     [SerializeField] float generationDurration = 10f;
+    [SerializeField] float mutationPercent = 0.5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,18 +61,71 @@ public class AgentManager : MonoBehaviour
     {
         // find the distance from each agent to end point
         foreach(Agent agent in agents)
-            agent.distFromEndPoint = Vector2.Distance(spawnPoint.transform.position, agent.transform.position);
+            agent.distFromEndPoint = Vector2.Distance(endPoint.transform.position, agent.transform.position);
 
         agents = agents.OrderBy(x => x.distFromEndPoint).ToArray();
- 
 
-        // remove the 2 agents who are the furthest from end point
-
-        // average vectors of the 4 best agents
-
-        // fill in array with the 2 new offspring
+        EvolveGeneration();
 
         // add a random new agent in there to diversify
+    }
+
+    void EvolveGeneration()
+    {
+        // int numberOfMutations = (int)((1 / 3) * ((float) agents.Length));
+        int numberOfMutations = (int)(agents.Length / 3);
+        Debug.Log(numberOfMutations);
+
+        for(int i = 1; i <= numberOfMutations; i++)
+        {
+            int parentAgentIndex = (2 * i) - 2;
+            Agent agent1 = agents[parentAgentIndex];
+            Debug.Log(agent1.id + " Will be parent 1");
+            Agent agent2 = agents[parentAgentIndex + 1];
+            Debug.Log(agent2.id + " Will be parent 2");
+
+            int newAgentIndex = agents.Length - i;
+            agents[newAgentIndex] = Instantiate(agentPrefab, new Vector3(1000, 1000, 0), Quaternion.identity);
+            agents[newAgentIndex].vectors = CreateOffSpring(agent1, agent2);
+            agents[newAgentIndex].id = IdCounter.ToString();
+            agents[newAgentIndex].name = "Agent " + IdCounter.ToString();
+            IdCounter++;
+            Debug.Log("Created " + agents[newAgentIndex].name);
+            // Destroy(agents[newAgentINdex], 0f);
+        }
+    }
+
+    Vector2[] CreateOffSpring(Agent agent1, Agent agent2)
+    {
+        int length = agent1.vectors.Length;
+        
+        int howManyVectorsToCombine = (int) (mutationPercent * length);
+        Debug.Log("Damn bug " + howManyVectorsToCombine);
+
+        int[] indexesToCombine = new int[howManyVectorsToCombine];
+
+        for(int i = 0; i < howManyVectorsToCombine; i++)
+        {
+            indexesToCombine[i] = Random.Range(0, length);
+        }
+
+        Vector2[] mutations = new Vector2[length];
+
+        for(int i = 0; i < length; i++)
+        {
+            if (indexesToCombine.Contains(i))
+            {
+                float x = (agent1.vectors[i].x + agent2.vectors[i].x) / (float)2;
+                float y = (agent1.vectors[i].y + agent2.vectors[i].y) / (float)2;
+                mutations[i] = new Vector2(x, y);
+            }
+            else
+            {
+                mutations[i] = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            }
+        }
+
+        return mutations;
     }
 
 }

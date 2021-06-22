@@ -763,11 +763,12 @@ MonoBehaviour:
   spawnPoint: {fileID: 1334120794}
   endPoint: {fileID: 808349334}
   agentPrefab: {fileID: 3951319894141293217, guid: f01ed78fd8e337b40b230c7d532abbd1, type: 3}
-  agentQuantity: 20
+  agentQuantity: 3
   agentThrust: 0.05
   agentVectorUpdateFreq: 1
-  agentVectorQuantity: 20
-  generationDurration: 5
+  agentVectorQuantity: 10
+  generationDurration: 30
+  mutationPercent: 0.2
 --- !u!4 &1454234159
 Transform:
   m_ObjectHideFlags: 0

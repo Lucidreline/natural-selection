@@ -12,7 +12,7 @@ public class Agent : MonoBehaviour
     public float distFromEndPoint;
 
     Vector2 currentVector;
-    [SerializeField] Vector2[] vectors;
+    [SerializeField] public Vector2[] vectors;
 
     void Awake()
     {
