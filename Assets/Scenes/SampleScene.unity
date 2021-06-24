@@ -316,7 +316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808349334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.82, y: 4.03, z: 0}
+  m_LocalPosition: {x: 8.82, y: 3.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -598,7 +598,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -763,12 +763,13 @@ MonoBehaviour:
   spawnPoint: {fileID: 1334120794}
   endPoint: {fileID: 808349334}
   agentPrefab: {fileID: 3951319894141293217, guid: f01ed78fd8e337b40b230c7d532abbd1, type: 3}
-  agentQuantity: 3
+  agentPrefab2: {fileID: 3951319894141293247, guid: f01ed78fd8e337b40b230c7d532abbd1, type: 3}
+  agentQuantity: 6
   agentThrust: 0.05
   agentVectorUpdateFreq: 1
-  agentVectorQuantity: 10
-  generationDurration: 30
-  mutationPercent: 0.2
+  agentVectorQuantity: 20
+  generationDurration: 15
+  mutationPercent: 0.9
 --- !u!4 &1454234159
 Transform:
   m_ObjectHideFlags: 0

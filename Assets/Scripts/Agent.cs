@@ -62,4 +62,9 @@ public class Agent : MonoBehaviour
     {
         currentVector = vectors[(int)Random.Range(0f, (float)manager.agentVectorQuantity)];
     }
+
+    public void Destroy(float delay = 0)
+    {
+        Destroy(this.gameObject, delay);
+    }
 }

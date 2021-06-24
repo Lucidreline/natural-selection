@@ -14,6 +14,7 @@ public class AgentManager : MonoBehaviour
 
     [Header("Agent")]
     [SerializeField] Agent agentPrefab;
+    [SerializeField] GameObject agentPrefab2;
     [SerializeField] int agentQuantity = 5;
     [SerializeField] public float agentThrust = 0.5f;
     [SerializeField] public float agentVectorUpdateFreq = 0.5f;
@@ -47,6 +48,14 @@ public class AgentManager : MonoBehaviour
         }
     }
 
+    void SpawnGeneration() 
+    {
+        foreach(Agent agent in agents)
+        {
+            agent.transform.position = spawnPoint.transform.position;
+        }
+    }
+
 
     IEnumerator GenerationChanger()
     {
@@ -74,7 +83,6 @@ public class AgentManager : MonoBehaviour
     {
         // int numberOfMutations = (int)((1 / 3) * ((float) agents.Length));
         int numberOfMutations = (int)(agents.Length / 3);
-        Debug.Log(numberOfMutations);
 
         for(int i = 1; i <= numberOfMutations; i++)
         {
@@ -85,14 +93,18 @@ public class AgentManager : MonoBehaviour
             Debug.Log(agent2.id + " Will be parent 2");
 
             int newAgentIndex = agents.Length - i;
+            Debug.Log("Destroy Agent " + agents[newAgentIndex].id);
+            agents[newAgentIndex].Destroy();
+
             agents[newAgentIndex] = Instantiate(agentPrefab, new Vector3(1000, 1000, 0), Quaternion.identity);
             agents[newAgentIndex].vectors = CreateOffSpring(agent1, agent2);
             agents[newAgentIndex].id = IdCounter.ToString();
             agents[newAgentIndex].name = "Agent " + IdCounter.ToString();
             IdCounter++;
             Debug.Log("Created " + agents[newAgentIndex].name);
-            // Destroy(agents[newAgentINdex], 0f);
         }
+
+        SpawnGeneration();
     }
 
     Vector2[] CreateOffSpring(Agent agent1, Agent agent2)
@@ -100,7 +112,6 @@ public class AgentManager : MonoBehaviour
         int length = agent1.vectors.Length;
         
         int howManyVectorsToCombine = (int) (mutationPercent * length);
-        Debug.Log("Damn bug " + howManyVectorsToCombine);
 
         int[] indexesToCombine = new int[howManyVectorsToCombine];
 
@@ -127,5 +138,5 @@ public class AgentManager : MonoBehaviour
 
         return mutations;
     }
-
+    
 }
