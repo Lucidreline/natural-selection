@@ -14,7 +14,6 @@ public class AgentManager : MonoBehaviour
 
     [Header("Agent")]
     [SerializeField] Agent agentPrefab;
-    [SerializeField] GameObject agentPrefab2;
     [SerializeField] int agentQuantity = 5;
     [SerializeField] public float agentThrust = 0.5f;
     [SerializeField] public float agentVectorUpdateFreq = 0.5f;
