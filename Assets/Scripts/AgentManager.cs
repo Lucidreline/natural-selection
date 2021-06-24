@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class AgentManager : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class AgentManager : MonoBehaviour
     [Header("Generation")]
     [SerializeField] float generationDurration = 10f;
     [SerializeField] float mutationPercent = 0.5f;
+    [SerializeField] TextMeshProUGUI generationCounterText;
+    public int generationCount = 1;
 
 
     // Start is called before the first frame update
@@ -74,6 +77,9 @@ public class AgentManager : MonoBehaviour
         agents = agents.OrderBy(x => x.distFromEndPoint).ToArray();
 
         EvolveGeneration();
+
+        generationCount++;
+        generationCounterText.text = "Generation " + generationCount.ToString();
 
         // add a random new agent in there to diversify
     }
