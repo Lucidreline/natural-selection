@@ -12,6 +12,7 @@ public class Agent : MonoBehaviour
     public float distFromEndPoint;
 
     Vector2 currentVector;
+    int vectorIndex = 0;
     [SerializeField] public Vector2[] vectors;
 
     void Awake()
@@ -60,7 +61,17 @@ public class Agent : MonoBehaviour
 
     void UpdateVector()
     {
-        currentVector = vectors[(int)Random.Range(0f, (float)manager.agentVectorQuantity)];
+        if (manager.randomVectorUpdating)
+            currentVector = vectors[(int)Random.Range(0f, (float)manager.agentVectorQuantity)];
+        else
+        {
+            currentVector = vectors[vectorIndex];
+            if (vectorIndex == manager.agentVectorQuantity - 1)
+                vectorIndex = 0;
+            else
+                vectorIndex++;
+
+        }
     }
 
     public void Destroy(float delay = 0)

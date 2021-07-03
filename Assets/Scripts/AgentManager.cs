@@ -19,6 +19,7 @@ public class AgentManager : MonoBehaviour
     [SerializeField] public float agentThrust = 0.5f;
     [SerializeField] public float agentVectorUpdateFreq = 0.5f;
     [SerializeField] public int agentVectorQuantity = 5;
+    [SerializeField] public bool randomVectorUpdating = false;
 
     Agent[] agents;
     int IdCounter = 0;
@@ -93,12 +94,9 @@ public class AgentManager : MonoBehaviour
         {
             int parentAgentIndex = (2 * i) - 2;
             Agent agent1 = agents[parentAgentIndex];
-            Debug.Log(agent1.id + " Will be parent 1");
             Agent agent2 = agents[parentAgentIndex + 1];
-            Debug.Log(agent2.id + " Will be parent 2");
 
             int newAgentIndex = agents.Length - i;
-            Debug.Log("Destroy Agent " + agents[newAgentIndex].id);
             agents[newAgentIndex].Destroy();
 
             agents[newAgentIndex] = Instantiate(agentPrefab, new Vector3(1000, 1000, 0), Quaternion.identity);
@@ -106,7 +104,6 @@ public class AgentManager : MonoBehaviour
             agents[newAgentIndex].id = IdCounter.ToString();
             agents[newAgentIndex].name = "Agent " + IdCounter.ToString();
             IdCounter++;
-            Debug.Log("Created " + agents[newAgentIndex].name);
         }
 
         SpawnGeneration();
